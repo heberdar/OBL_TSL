@@ -1,0 +1,14 @@
+  - name: Permit traffic to port 8080 on Ubuntu
+    ufw:
+      rule: allow
+      port: '8080'
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Permit traffic to port 8080 on Rocky
+    firewalld:
+      port: 8080/tcp
+      permanent: yes
+      state: enabled
+      notify:
+        - firewalldReload
+    when: ansible_facts['os_family'] == "RedHat"

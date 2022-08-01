@@ -1,0 +1,6 @@
+---
+- name: Start and Enable firewalld on Rocky
+  systemd:
+    name: firewalld
+    state: reloaded
+    daemon_reload: true

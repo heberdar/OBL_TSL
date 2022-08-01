@@ -1,0 +1,115 @@
+---
+- name: 
+  hosts: appservers
+  vars:
+    database_user: ort
+    database_password: dariogianedgardo
+    database_name: tallerlinux
+    port_to_open: 8080
+  become: yes
+
+  tasks:
+
+  - import_tasks: roles/updateOS.yaml
+  - import_tasks: roles/openPorts.yaml
+
+  - name: Create directory for Java 1.8 
+    file:
+      path: /usr/java
+      state: directory
+
+  - name: Extract Java 1.8
+    unarchive:
+      src: /home/ansible/OBL_TSL/files/jre-8u321-linux-x64.tar.gz
+      dest: /usr/java
+  
+  - name: Export variable Java 
+    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
+
+  - import_tasks: roles/installMariaDB.yaml
+
+  - import_tasks: roles/createUserDB.yaml
+
+  - import_tasks: roles/createDatabase.yaml
+       
+  - name: Copy creartablas.sql to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL/files/creartablas.sql
+      dest: /home/ansible/
+      owner: ansible
+      group: ansible
+      mode: 0744
+
+  - name: Create tables SQL 
+    mysql_db: 
+      name: "{{ database_name }}" 
+      state: import 
+      target: /home/ansible/creartablas.sql
+      login_user: "{{ database_user }}"
+      login_password: "{{ database_password }}"
+
+  - name: Create a Tomcat User
+    user:
+      name: tomcat
+ 
+  - name: Create a Tomcat Group
+    group:
+      name: tomcat
+
+  - name: Extract Tomcat
+    unarchive:
+      src: /home/ansible/OBL_TSL/files/tomcat.tar.gz
+      dest: /opt/
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Rename tomcat folder after to Extract
+    command: mv /opt/apache-tomcat-9.0.65 /opt/tomcat
+
+  - name: Change ownership of tomcat directory
+    file:
+      path: /opt/
+      owner: tomcat
+      group: tomcat
+      mode: "u+rwx,g+rx,o=rx"
+      recurse: yes
+      state: directory
+ 
+  - name: Create a /opt/config directory
+    file:
+      path: /opt/config
+      owner: tomcat
+      group: tomcat
+      mode: 755
+      recurse: yes
+
+  - name: Copy app.properties to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL/files/app.properties
+      dest: /opt/config
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Copy tomcat.service to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL/files/tomcat.service
+      dest: /etc/systemd/system/
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+      notify:
+        - startTomcat
+ 
+  - name: Copy todo.war to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL/files/todo.war
+      dest: /opt/tomcat/webapps/
+      owner: tomcat
+      group: tomcat
+      mode: 0644

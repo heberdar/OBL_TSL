@@ -1,0 +1,6 @@
+---
+  - name: Start and Enable Tomcat 9 on server
+    systemd:
+      name: tomcat
+      state: started
+      daemon_reload: true

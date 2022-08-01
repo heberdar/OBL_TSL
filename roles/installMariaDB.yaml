@@ -1,0 +1,25 @@
+    - name: Install MariaDB and python complement on Ubuntu
+      apt:
+        name: 
+          - mariadb-server
+          - python3-pymysql
+        state: latest
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Install MariaDB and python complement on Rocky
+      package:
+        name: 
+          - mariadb-server
+          - python3
+        state: latest
+        notify:
+        - startMariaDB
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name:  Install pymysql on Rocky
+      become: true
+      pip: 
+        name: pymysql
+        state: present
+        notify:
+      when: ansible_facts['os_family'] == "RedHat"
