@@ -1,5 +1,5 @@
 # Obligatorio - Taller de Servidores Linux Matutino - 2022
-| ![alt text](https://github.com/heberdar/TSL/blob/main/images/Linux_logo.jpg) | ![alt text](https://github.com/heberdar/TSL/blob/main/images/rocky-linux.jpg) |
+| ![LinuxLogo](https://github.com/heberdar/TSL/blob/main/images/Linux_logo.jpg) | ![RockyLogo](https://github.com/heberdar/TSL/blob/main/images/rocky-linux.jpg) |
 | ----------- | ----------- |
 ## Repositorio para deploy de servicios 
 
