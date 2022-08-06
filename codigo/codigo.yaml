@@ -18,10 +18,10 @@
       path: /usr/java
       state: directory
 
-   - name: Extract Java 1.8
-     unarchive:
-       src: /home/ansible/jre-8u321-linux-x64.tar.gz 
-       dest: /usr/java
+  - name: Extract Java 1.8
+    unarchive:
+      src: /home/ansible/jre-8u321-linux-x64.tar.gz 
+      dest: /usr/java
   
   - name: Export variable Java 
     command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc
