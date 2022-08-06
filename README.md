@@ -1,4 +1,6 @@
 # Obligatorio - Taller de Servidores Linux Matutino - 2022
+| ![RockyLinuxLogo](https://rockylinux.org/) | ![UbuntuServerLogo](image.jpg) |
+| ----------- | ----------- |
 ## Repositorio para deploy de servicios 
 
 1. Se inician tres equipos dos con Rocky Linux 8.5 y uno con Ubuntu Server 22.04
