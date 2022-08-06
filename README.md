@@ -1,5 +1,6 @@
 # Obligatorio - Taller de Servidores Linux Matutino - 2022
-
+| ![alt text](https://github.com/heberdar/TSL/blob/main/images/Linux_logo.jpg) | ![alt text](https://github.com/heberdar/TSL/blob/main/images/rocky-linux.jpg) |
+| ----------- | ----------- |
 ## Repositorio para deploy de servicios 
 
 1. Se inician tres equipos dos con Rocky Linux 8.5 y uno con Ubuntu Server 22.04
