@@ -11,3 +11,5 @@ Taller de Servidores Linux
 | 2GB | /SWAP|
 | 5GB | /var |
 | 5GB | /opt |
+| 5GB | /    |
+
