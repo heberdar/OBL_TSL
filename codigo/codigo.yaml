@@ -1,72 +1,82 @@
 ---
-- name: Install services for mailling
-  hosts: mailservers
+- name: 
+  hosts: appservers
   become: yes
   
   tasks: 
-  - name: Update
+  - name: Update Ubuntu 22.04
     apt:
       update_cache: yes
 
-  - name: Install postfix
-    apt: 
-      name: postfix
-      state: present
-
-  - name: Install apache2
-    apt: 
-      name: apache2
-      state: latest
-
-  - name: Install dovecot
-    apt: 
-      name: dovecot-core
-      state: latest
-
-  - name: Install zip
-    apt: 
-      name: zip
-      state: latest
-
-  - name: Download squirrelmail
+  - name: Download Java 1.8
     get_url:
-      url: https://www.squirrelmail.org/countdl.php?fileurl=http%3A%2F%2Fprdownloads.sourceforge.net%2Fsquirrelmail%2Fsquirrelmail-webmail-1.4.22.tar.gz
-      dest: /home/ansible/
-
-  - name: Unzip squirrelmail
-    unarchive:
-      src: /home/ansible/squirrelmail-webmail-1.4.22.tar.gz
+      url: https://javadl.oracle.com/webapps/download/AutoDL?BundleId=245797_df5ad55fdd604472a86a45a217032c7d
       dest: /home/ansible/
   
-  - name: Move to mail
-    copy: remote_src=True src=/home/ansible/squirrelmail-webmail-1.4.22 dest=/var/www/html/mail
-
-  - name: Move configuration file
-    copy: remote_src=True src=./config_default.php  dest=/var/www/html/mail/config/config.php
-
-  - name: Change $domain
-    lineinfile:
-      path: /var/www/html/mail/config/config.php
-      regexp: '^\$domain ='
-      line: $domain = 'pruebataller.ort';
-
-  - name: Change $data_dir
-    lineinfile:
-      path: /var/www/html/mail/config/config.php
-      regexp: '^\$data_dir'
-      line: $data_dir = '/var/www/html/mail/data/';
-
-  - name: Change $attachment
-    lineinfile:
-      path: /var/www/html/mail/config/config.php
-      regexp: '^\$attachment_dir'
-      line: $attachment_dir = '/var/www/html/mail/attach/';
-
-  - name: Squirrelmail permissions
+  - name: Create directory for Java 1.8
     file:
-      path: /var/www/html/mail
+      path: /usr/java
       state: directory
-      recurse: yes
-      owner: www-data
-      group: www-data
-      mode: '0755'
+
+  # - name: Extract Java 1.8
+  #   unarchive:
+  #     src: /home/ansible/jre-8u321-linux-x64.tar.gz 
+  #     dest: /usr/java
+  
+  - name: Export variable Java 
+    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc
+
+  # - name: Install apache2
+  #   apt: 
+  #     name: apache2
+  #     state: latest
+
+  # - name: Install dovecot
+  #   apt: 
+  #     name: dovecot-core
+  #     state: latest
+
+  # - name: Install zip
+  #   apt: 
+  #     name: zip
+  #     state: latest
+
+
+
+  # - name: Unzip squirrelmail
+  #   unarchive:
+  #     src: /home/ansible/squirrelmail-webmail-1.4.22.tar.gz
+  #     dest: /home/ansible/
+  
+  # - name: Move to mail
+  #   copy: remote_src=True src=/home/ansible/squirrelmail-webmail-1.4.22 dest=/var/www/html/mail
+
+  # - name: Move configuration file
+  #   copy: remote_src=True src=./config_default.php  dest=/var/www/html/mail/config/config.php
+
+  # - name: Change $domain
+  #   lineinfile:
+  #     path: /var/www/html/mail/config/config.php
+  #     regexp: '^\$domain ='
+  #     line: $domain = 'pruebataller.ort';
+
+  # - name: Change $data_dir
+  #   lineinfile:
+  #     path: /var/www/html/mail/config/config.php
+  #     regexp: '^\$data_dir'
+  #     line: $data_dir = '/var/www/html/mail/data/';
+
+  # - name: Change $attachment
+  #   lineinfile:
+  #     path: /var/www/html/mail/config/config.php
+  #     regexp: '^\$attachment_dir'
+  #     line: $attachment_dir = '/var/www/html/mail/attach/';
+
+  # - name: Squirrelmail permissions
+  #   file:
+  #     path: /var/www/html/mail
+  #     state: directory
+  #     recurse: yes
+  #     owner: www-data
+  #     group: www-data
+  #     mode: '0755'
