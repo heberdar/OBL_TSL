@@ -45,6 +45,9 @@
       priv: 'demo.*:ALL'
       state: present
   
+  - name: Create tables SQL 
+    mysql_db: name=demo state=import target=/tmp/creartablas.sql
+
 
     # - name: Install apache2
   #   apt: 
