@@ -17,9 +17,13 @@
 | 5GB | /opt |
 | 5GB | /    |
 
-5. Se instalan los Repositorios Extras de Fedora
+5. Se instalan los Repositorios Extras de Fedora **Epel-Release**
 6. Generamos la clave publica en el equipo Bastion con **ssh-keygen**
-7. Ingresamos dicha clave en GitHub para tener acceso SSH.
-8. Descargamos Git en el equipo Rocky Bastion
+7. Ingresamos dicha clave en GitHub para tener acceso a nuestro Repositorio
+8. Descargamos Git en el equipo Rocky Bastion y Ansible
 9. Ahora seguimos con la configuracion global de Git
 10. ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
+11. Realizada dicha configuracion procedemos a sincronizar el repositorio con Visual Studio Code
+12. Configuramos la red en los Equipos destino para volcar nuestro Playbook **Netplan - NetworkManager**
+13. Se llama al comando **ssh-copy-id usuario@ip-destino** obteniendo acceso a ese equipo en cuestion
+14. V
