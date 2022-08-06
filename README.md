@@ -26,4 +26,5 @@
 11. Realizada dicha configuracion procedemos a sincronizar el repositorio con Visual Studio Code
 12. Configuramos la red en los Equipos destino para volcar nuestro Playbook **Netplan - NetworkManager**
 13. Se llama al comando **ssh-copy-id usuario@ip-destino** obteniendo acceso a ese equipo en cuestion
-14. V
+14. Nos posicionamos en nuestro repositorio Git creamos un archivo **host.ini** donde esta la lista de equipos
+15. Creamos nuestro primer Playbook llamado **codigo.yaml** el cual necesita estar relacionado con host.ini
