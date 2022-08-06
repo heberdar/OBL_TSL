@@ -20,4 +20,6 @@
 5. Se instalan los Repositorios Extras de Fedora
 6. Generamos la clave publica en el equipo Bastion con **ssh-keygen**
 7. Ingresamos dicha clave en GitHub para tener acceso SSH.
-8. 
+8. Descargamos Git en el equipo Rocky Bastion
+9. Ahora seguimos con la configuracion global de Git
+10. 
