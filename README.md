@@ -5,6 +5,7 @@ Taller de Servidores Linux
 2. En ambos equipos se hacen diagramas LVM con estos tamaños de disco
 
 | Tamaño | Ubicacion |
+| ----------- | ----------- |
 | 1GB | /home |
 | 1GB | /boot |
 | 2GB | /SWAP|
