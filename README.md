@@ -17,3 +17,6 @@
 | 5GB | /opt |
 | 5GB | /    |
 
+5. Se instalan los Repositorios Extras de Fedora
+6. Generamos la clave publica en el equipo Bastion con **ssh-keygen**
+7. ll
