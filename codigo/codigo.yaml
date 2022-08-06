@@ -31,7 +31,7 @@
 
   - name: Install MariaDB
     apt:
-      name: mariadb-server
+      name: mariadb-server; mariadb-core
       state: latest
     
   - name: Create DB for tomcat 
@@ -83,6 +83,14 @@
         recurse: yes
         state: directory
  
+    - name: Create a /opt/config directory
+      file:
+        path: /opt/config
+        owner: tomcat
+        group: tomcat
+        mode: 755
+        recurse: yes
+
     - name: Copy Tomcat service from local to remote
       copy:
         src: /etc/tomcat.service
@@ -95,6 +103,7 @@
         state: started
         daemon_reload: true
 ﻿
+
 
     # - name: Install apache2
   #   apt: 
