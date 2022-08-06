@@ -24,9 +24,29 @@
       dest: /usr/java
   
   - name: Export variable Java 
-    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc
+    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc 
 
-  # - name: Install apache2
+  
+
+  - name: Install MariaDB
+    apt:
+      name: mariadb-server
+      state: latest
+    
+  - name: Create DB for tomcat 
+    mysql_db:
+       name: demo
+       state: present
+       
+  - name: Create database user with name 'demo' and password 'prueba' with all database privileges
+    mysql_user:
+      name: demo
+      password: prueba
+      priv: 'demo.*:ALL'
+      state: present
+  
+
+    # - name: Install apache2
   #   apt: 
   #     name: apache2
   #     state: latest
