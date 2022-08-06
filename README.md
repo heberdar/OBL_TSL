@@ -1,4 +1,4 @@
-# Obligatorio Taller de Servidores Linux Matutino - 2022
+# Obligatorio - Taller de Servidores Linux Matutino - 2022
 ## Repositorio para deploy de servicios 
 
 1. Se inician tres equipos dos con Rocky Linux 8.5 y uno conUbuntu Server 22.04
