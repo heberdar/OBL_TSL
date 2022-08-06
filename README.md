@@ -19,4 +19,5 @@
 
 5. Se instalan los Repositorios Extras de Fedora
 6. Generamos la clave publica en el equipo Bastion con **ssh-keygen**
-7. ll
+7. Ingresamos dicha clave en GitHub para tener acceso SSH.
+8. 
