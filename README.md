@@ -1,7 +1,10 @@
 # Obligatorio Taller de Servidores Linux Matutino - 2022
 ## Repositorio para deploy de servicios 
-1. Se inician tres equipos con Rocky Linux 8.5 y Ubuntu Server 22.04
-2. En ambos equipos se hacen diagramas LVM con discos de 20GB
+
+1. Se inician tres equipos dos con Rocky Linux 8.5 y uno conUbuntu Server 22.04
+2. En todos los equipos se hacen diagramas LVM con discos de 20GB
+3. A estos equipos se les configura la red con dos tarjetas modo NAT y VirtualHostOnly
+4. Se crea un usuario **ansible** con password **ansible01**
 
 | Tamaño | Ubicacion |
 | ----------- | ----------- |
