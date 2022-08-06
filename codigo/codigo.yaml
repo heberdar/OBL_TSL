@@ -3,7 +3,7 @@
   hosts: appservers
   become: yes
   
-  # Comienzo de tareas
+  
   tasks: 
   - name: Update Ubuntu 22.04
     apt:
