@@ -22,4 +22,4 @@
 7. Ingresamos dicha clave en GitHub para tener acceso SSH.
 8. Descargamos Git en el equipo Rocky Bastion
 9. Ahora seguimos con la configuracion global de Git
-10. 
+10. ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
