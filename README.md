@@ -35,13 +35,13 @@
 6. Ingresamos dicha clave en GitHub para tener acceso a nuestro Repositorio
 7. Creamos la configuracion global de git con los siguientes comandos
 
-**git config --global user.name "Usuario"**
-**git config --global user.email "Usuario@dominio"**
-**git config --global user.color.ui true**
-**git config --global user.status auto**
-**git config --global user.branch auto**
-**git config --global core.editor vim**
-**git config --list**
+- **git config --global user.name "Usuario"**
+- **git config --global user.email "Usuario@dominio"**
+- **git config --global user.color.ui true**
+- **git config --global user.status auto**
+- **git config --global user.branch auto**
+- **git config --global core.editor vim**
+- **git config --list**
 
 8. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
 9. Esta el repositorio en nuestro equipo Bastion.
