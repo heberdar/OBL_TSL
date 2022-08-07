@@ -9,8 +9,10 @@
 3. Recordar que para continuar con la instalacion en UBUNTU es necesario desactivar la red.
 4. Se particionan los discos con el siguiente diagrama LVM.
 
-| Tamaño | Ubicacion | |![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
-| ----------- | ----------- | ----------- |
+|![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
+| ----------- | ----------- |
+| Tamaño | Ubicacion | 
+| ----------- | ----------- |
 | 1GB | /home |
 | 1GB | /boot |
 | 2GB | /SWAP|
