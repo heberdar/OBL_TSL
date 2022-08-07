@@ -25,7 +25,7 @@
       dest: /usr/java
   
   - name: Export variable Java 
-    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc 
+    command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
 
   
 
