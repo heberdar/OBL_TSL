@@ -9,7 +9,7 @@
 3. Recordar que para continuar con la instalacion en UBUNTU es necesario desactivar la red.
 4. Se particionan los discos con el siguiente diagrama LVM.
 
-|![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
+
 | Tamaño | Ubicacion | 
 | ----------- | ----------- |
 | 1GB | /home |
@@ -18,7 +18,8 @@
 | 5GB | /var |
 | 5GB | /opt |
 | 5GB | /    |
- 
+|![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
+| ----------- | ----------- |
 5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
 6. Terminada la instalacion de los dos equipos no olvide ** la Clonacion Completa al primer RockyLinux terminada su instalacion**
 
