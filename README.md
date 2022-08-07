@@ -42,7 +42,7 @@
 - **git config --global user.branch auto**
 - **git config --global core.editor vim**
 - **git config --list**
-![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
+- ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
 8. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
 9. Esta el repositorio en nuestro equipo Bastion.
 
