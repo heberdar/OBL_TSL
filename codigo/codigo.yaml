@@ -8,7 +8,34 @@
   - name: Update Ubuntu 22.04
     apt:
       update_cache: yes
+    when: ansible_facts['os_family'] == "Debian" 
+
+  - name: Update Rocky
+    yum:
+      update_cache: yes
+    when: ansible_facts['os_family'] == "RedHat" 
   
+  
+
+  - name: Permit traffic to port 8080 on Ubuntu
+    ufw:
+      rule: allow
+      port: '8080'
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Permit traffic to port 8080 on Rocky
+    firewalld:
+      port: 8080/tcp
+      permanent: yes
+      state: enabled
+    when: ansible_facts['os_family'] == "RedHat"
+
+  - name: Start and Enable firewalld on Rocky
+    systemd:
+      name: firewalld
+      state: reloaded
+      daemon_reload: true
+    when: ansible_facts['os_family'] == "RedHat"
 
 
   - name: Create directory for Java 1.8 
@@ -26,30 +53,68 @@
 
 
 
-  - name: "Install ansible python3 mysql dependency"
+  - name: Install MariaDB and python complement on Ubuntu
     apt:
-      name: python3-mysqldb
+      name: 
+        - mariadb-server
+        - python3-pymysql
       state: latest
+    when: ansible_facts['os_family'] == "Debian"
 
-
-
-  - name: Install MariaDB
-    apt:
-      name: mariadb-server
+  - name: Install MariaDB and python complement on Rocky
+    package:
+      name: 
+        - mariadb-server
+        - python3
       state: latest
+    when: ansible_facts['os_family'] == "RedHat"
 
-  - name: Create DB for tomcat 
-    mysql_db:
-       name: tallerlinux
-       state: present
-       
+  - name: Install pymysql on Rocky
+    become: true
+    pip: 
+      name: pymysql
+      state: present
+    when: ansible_facts['os_family'] == "RedHat"
+
+  - name: Start and Enable mariadb on Rocky
+    systemd:
+      name: mariadb
+      enabled: yes
+      state: started
+    when: ansible_facts['os_family'] == "RedHat"
+
   - name: Create database user with name 'tallerlinux' and password 'prueba' with all database privileges
     mysql_user:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
       name: ort
       password: dariogianedgardo
       priv: 'tallerlinux.*:ALL'
-      state: present
+      # state: present
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Create database user with name 'tallerlinux' and password 'prueba' with all database privileges
+    mysql_user:
+      login_unix_socket: /var/lib/mysql/mysql.sock
+      name: ort
+      password: dariogianedgardo
+      priv: 'tallerlinux.*:ALL'
+      # state: present
+    when: ansible_facts['os_family'] == "RedHat"
+
+  - name: Create DB for tomcat 
+    mysql_db:
+       login_unix_socket: /var/run/mysqld/mysqld.sock
+       name: tallerlinux
+       state: present
+    when: ansible_facts['os_family'] == "Debian"
   
+  - name: Create DB for tomcat on Rocky
+    mysql_db:
+       login_unix_socket: /var/lib/mysql/mysql.sock
+       name: tallerlinux
+       state: present
+    when: ansible_facts['os_family'] == "RedHat"
+       
   - name: Copy creartablas.sql to remote
     become: true 
     copy: 
@@ -132,7 +197,7 @@
       group: tomcat
       mode: 0644
 
-  - name: Start and Enable Tomcat 9 on sever
+  - name: Start and Enable Tomcat 9 on server
     systemd:
       name: tomcat
       state: started
