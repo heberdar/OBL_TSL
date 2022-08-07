@@ -18,7 +18,7 @@
 | 5GB | /opt |
 | 5GB | /    |
  
- | ![Ejemplo_Rocky8.5](image.jpg) | ![Ejemplo_Ubuntu22.04](image.jpg) |
+ | ![Ejemplo_Rocky8.5](https://github.com/heberdar/TSL/blob/main/images/rocky8_LVM.jpg) | ![Ejemplo_Ubuntu22.04](image.jpg) |
 | ----------- | ----------- |
 
 5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
