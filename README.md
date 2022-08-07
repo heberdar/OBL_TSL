@@ -9,7 +9,7 @@
 3. Recordar que para continuar con la instalacion en UBUNTU es necesario desactivar la red.
 4. Se particionan los discos con el siguiente diagrama LVM.
 
-| Tamaño | Ubicacion |
+| Tamaño | Ubicacion | 
 | ----------- | ----------- |
 | 1GB | /home |
 | 1GB | /boot |
@@ -20,6 +20,7 @@
  
  | ![Ejemplo_Rocky8.5](image.jpg) | ![Ejemplo_Ubuntu22.04](image.jpg) |
 | ----------- | ----------- |
+
 5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
 6. Terminada la instalacion de los dos equipos no olvide ** la Clonacion Completa al primer RockyLinux terminada su instalacion**
 
@@ -42,7 +43,7 @@
 **git config --global core.editor vim**
 **git config --list**
 
-8. Utilizamos el comando  verificar en Code > SSH es igual **git clone git@github.com:heberdar/OBL_TSL.git**
+8. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
 9. Esta el repositorio en nuestro equipo Bastion.
 ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
 
