@@ -1,5 +1,8 @@
 {
     "yaml.schemas": {
-        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook": "file:///home/ansible/OBL_TSL-2/codigo/codigo.yaml"
+        "https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible.json#/$defs/playbook": [
+            "file:///home/ansible/OBL_TSL-2/codigo/codigo.yaml",
+            "file:///home/ansible/OBL_TSL/OBL_TSL/codigo/codigo.yaml"
+        ]
     }
 }
