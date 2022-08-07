@@ -100,11 +100,11 @@
   - name: Copy todo.war to remote
     become: true 
     copy: 
-       src: /home/ansible/OBL_TSL-2/files/todo.war
-       dest: /opt/tomcat/webapps/
-       owner: tomcat
-       group: tomcat
-       mode: 0644
+      src: /home/ansible/OBL_TSL-2/files/todo.war
+      dest: /opt/tomcat/webapps/
+      owner: tomcat
+      group: tomcat
+      mode: 0644
 
   - name: Start and Enable Tomcat 10 on sever
     systemd:
