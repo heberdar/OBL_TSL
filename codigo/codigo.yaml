@@ -117,6 +117,15 @@
       mode: 755
       recurse: yes
 
+  - name: Copy app.properties to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL-2/files/app.properties
+      dest: /opt/config
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
   - name: Copy tomcat.service to remote
     become: true 
     copy: 
