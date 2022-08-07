@@ -42,10 +42,10 @@
 - **git config --global user.branch auto**
 - **git config --global core.editor vim**
 - **git config --list**
-
+![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
 8. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
 9. Esta el repositorio en nuestro equipo Bastion.
-![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
+
 
 10. Realizada dicha configuracion procedemos a sincronizar el repositorio con Visual Studio Code
 11. Configuramos la red en los Equipos destino para volcar nuestro Playbook **"Netplan - NetworkManager"**
