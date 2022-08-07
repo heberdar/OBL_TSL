@@ -10,7 +10,6 @@
 4. Se particionan los discos con el siguiente diagrama LVM.
 
 |![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
-| ----------- | ----------- |
 | Tamaño | Ubicacion | 
 | ----------- | ----------- |
 | 1GB | /home |
