@@ -97,20 +97,20 @@
       dest: /etc/systemd/system/
       mode: 0755
  
+  - name: Copy todo.war to remote
+    become: true 
+    copy: 
+       src: /home/ansible/OBL_TSL-2/files/todo.war
+       dest: /opt/tomcat/webapps/
+       owner: tomcat
+       group: tomcat
+       mode: 0644
+
   - name: Start and Enable Tomcat 10 on sever
     systemd:
       name: tomcat
       state: started
       daemon_reload: true
-
-  - name: Copy todo.war to remote
-    become: true 
-      copy: 
-        src: /home/ansible/OBL_TSL-2/files/todo.war
-        dest: /opt/tomcat/webapps/
-        owner: tomcat
-        group: tomcat
-        mode: 0644
 
   # - name: Install apache2
   #   apt: 
