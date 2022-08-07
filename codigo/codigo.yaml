@@ -8,12 +8,6 @@
   - name: Update Ubuntu 22.04
     apt:
       update_cache: yes
-
-  - name: Copy java to remote
-    become: true 
-    copy: 
-      src: /home/ansible/OBL_TSL-2/files/jre-8u321-linux-x64.tar.gz
-      dest: /home/ansible
   
   - name: Create directory for Java 1.8 
     file:
@@ -22,19 +16,22 @@
 
   - name: Extract Java 1.8
     unarchive:
-      src: /home/ansible/jre-8u321-linux-x64.tar.gz
+      src: /home/ansible/OBL_TSL-2/files/jre-8u321-linux-x64.tar.gz
       dest: /usr/java
   
   - name: Export variable Java 
     command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
 
-  
+  - name: "Install ansible python3 mysql dependency"
+    apt:
+      name: python3-mysqldb
+      state: latest
 
   - name: Install MariaDB
     apt:
       name: mariadb-server
       state: latest
-    
+
   - name: Create DB for tomcat 
     mysql_db:
        name: demo
@@ -47,8 +44,23 @@
       priv: 'demo.*:ALL'
       state: present
   
+  - name: Copy creartablas.sql to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL-2/files/creartablas.sql
+      dest: /home/ansible/
+      owner: ansible
+      group: ansible
+      mode: 0744
+
   - name: Create tables SQL 
-    mysql_db: name=demo state=import target=/tmp/creartablas.sql
+    mysql_db: 
+      name: demo 
+      state: import 
+      target: /home/ansible/creartablas.sql
+      login_user: demo
+      login_password: prueba
+      state: present
 
 
 
@@ -68,16 +80,23 @@
       mode: 755
       recurse: yes
  
-  - name: download & unarchive tomcat10 
+  - name: Copy tomcat.tar.gz to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL-2/files/tomcat.tar.gz
+      dest: /opt/
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+
+  - name: Extract Tomcat
     unarchive:
-      src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.23/bin/apache-tomcat-10.0.23.tar.gz
-      dest: /opt/tomcat
-      remote_src: yes
-#     extra_opts: [--strip-components=1]
- 
+      src: /home/ansible/OBL_TSL-2/files/tomcat.tar.gz
+      dest: /opt/
+
   - name: Change ownership of tomcat directory
     file:
-      path: /opt/tomcat
+      path: /opt/
       owner: tomcat
       group: tomcat
       mode: "u+rwx,g+rx,o=rx"
@@ -92,10 +111,13 @@
       mode: 755
       recurse: yes
 
-  - name: Copy Tomcat service from local to remote
-    copy:
-      src: /etc/tomcat.service
+  - name: Copy tomcat.service to remote
+    become: true 
+    copy: 
+      src: /home/ansible/OBL_TSL-2/files/tomcat.service
       dest: /etc/systemd/system/
+      owner: tomcat
+      group: tomcat
       mode: 0755
  
   - name: Copy todo.war to remote
