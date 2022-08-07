@@ -9,6 +9,8 @@
     apt:
       update_cache: yes
   
+
+
   - name: Create directory for Java 1.8 
     file:
       path: /usr/java
@@ -22,10 +24,14 @@
   - name: Export variable Java 
     command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
 
+
+
   - name: "Install ansible python3 mysql dependency"
     apt:
       name: python3-mysqldb
       state: latest
+
+
 
   - name: Install MariaDB
     apt:
@@ -34,14 +40,14 @@
 
   - name: Create DB for tomcat 
     mysql_db:
-       name: demo
+       name: tallerlinux
        state: present
        
-  - name: Create database user with name 'demo' and password 'prueba' with all database privileges
+  - name: Create database user with name 'tallerlinux' and password 'prueba' with all database privileges
     mysql_user:
-      name: demo
-      password: prueba
-      priv: 'demo.*:ALL'
+      name: ort
+      password: dariogianedgardo
+      priv: 'tallerlinux.*:ALL'
       state: present
   
   - name: Copy creartablas.sql to remote
@@ -55,12 +61,11 @@
 
   - name: Create tables SQL 
     mysql_db: 
-      name: demo 
+      name: tallerlinux 
       state: import 
       target: /home/ansible/creartablas.sql
-      login_user: demo
-      login_password: prueba
-      state: present
+      login_user: ort
+      login_password: dariogianedgardo
 
 
 
@@ -71,23 +76,6 @@
   - name: Create a Tomcat Group
     group:
       name: tomcat
- 
-  # - name: Create a Tomcat Directory
-  #   file:
-  #     path: /opt/tomcat
-  #     owner: tomcat
-  #     group: tomcat
-  #     mode: 755
-  #     recurse: yes
- 
-  # - name: Copy tomcat.tar.gz to remote
-  #   become: true 
-  #   copy: 
-  #     src: /home/ansible/OBL_TSL-2/files/tomcat.tar.gz
-  #     dest: /opt/
-  #     owner: tomcat
-  #     group: tomcat
-  #     mode: 0755
 
   - name: Extract Tomcat
     unarchive:
@@ -149,58 +137,3 @@
       name: tomcat
       state: started
       daemon_reload: true
-
-  # - name: Install apache2
-  #   apt: 
-  #     name: apache2
-  #     state: latest
-
-  # - name: Install dovecot
-  #   apt: 
-  #     name: dovecot-core
-  #     state: latest
-
-  # - name: Install zip
-  #   apt: 
-  #     name: zip
-  #     state: latest
-
-
-
-  # - name: Unzip squirrelmail
-  #   unarchive:
-  #     src: /home/ansible/squirrelmail-webmail-1.4.22.tar.gz
-  #     dest: /home/ansible/
-  
-  # - name: Move to mail
-  #   copy: remote_src=True src=/home/ansible/squirrelmail-webmail-1.4.22 dest=/var/www/html/mail
-
-  # - name: Move configuration file
-  #   copy: remote_src=True src=./config_default.php  dest=/var/www/html/mail/config/config.php
-
-  # - name: Change $domain
-  #   lineinfile:
-  #     path: /var/www/html/mail/config/config.php
-  #     regexp: '^\$domain ='
-  #     line: $domain = 'pruebataller.ort';
-
-  # - name: Change $data_dir
-  #   lineinfile:
-  #     path: /var/www/html/mail/config/config.php
-  #     regexp: '^\$data_dir'
-  #     line: $data_dir = '/var/www/html/mail/data/';
-
-  # - name: Change $attachment
-  #   lineinfile:
-  #     path: /var/www/html/mail/config/config.php
-  #     regexp: '^\$attachment_dir'
-  #     line: $attachment_dir = '/var/www/html/mail/attach/';
-
-  # - name: Squirrelmail permissions
-  #   file:
-  #     path: /var/www/html/mail
-  #     state: directory
-  #     recurse: yes
-  #     owner: www-data
-  #     group: www-data
-  #     mode: '0755'
