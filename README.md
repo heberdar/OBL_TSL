@@ -8,6 +8,7 @@
 2. Se agregan dos tarjetas de Red una en Modo NAT y otra en Modo Virtual Host Only
 3. Recordar que para continuar con la instalacion en UBUNTU es necesario desactivar la red.
 4. Se particionan los discos con el siguiente diagrama LVM.
+
 | Tamaño | Ubicacion |
 | ----------- | ----------- |
 | 1GB | /home |
