@@ -8,10 +8,14 @@
     port_to_open: 8080
   become: yes
 
-  tasks:
+  roles: 
+    - updateOS
+    - openPorts
+    - installMariaDB
+    - createDatabase
+    - createUserDB
 
-  - import_tasks: roles/updateOS.yaml
-  - import_tasks: roles/openPorts.yaml
+  tasks:
 
   - name: Create directory for Java 1.8 
     file:
@@ -25,12 +29,6 @@
   
   - name: Export variable Java 
     command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
-
-  - import_tasks: roles/installMariaDB.yaml
-
-  - import_tasks: roles/createUserDB.yaml
-
-  - import_tasks: roles/createDatabase.yaml
        
   - name: Copy creartablas.sql to remote
     become: true 
@@ -102,8 +100,8 @@
       owner: tomcat
       group: tomcat
       mode: 0755
-      notify:
-        - startTomcat
+    notify:
+       - startTomcat
  
   - name: Copy todo.war to remote
     become: true 

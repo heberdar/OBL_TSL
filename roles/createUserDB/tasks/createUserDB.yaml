@@ -3,7 +3,7 @@
       login_unix_socket: /var/run/mysqld/mysqld.sock
       name: "{{ database_user }}"
       password: "{{ database_password }}"
-      priv: '"{{ database_name }}".*:ALL'
+      priv: "{{ database_name }}.*:ALL"
       # state: present
     when: ansible_facts['os_family'] == "Debian"
 
@@ -12,6 +12,6 @@
       login_unix_socket: /var/lib/mysql/mysql.sock
       name: "{{ database_user }}"
       password: "{{ database_password }}"
-      priv: '"{{ database_name }}".*:ALL'
+      priv: "{{ database_name }}.*:ALL"
       # state: present
     when: ansible_facts['os_family'] == "RedHat"
