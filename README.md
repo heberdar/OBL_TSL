@@ -21,7 +21,7 @@
 |![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](https://github.com/heberdar/OBL_TSL/blob/main/images/ubuntu_LVM.JPG) |
 
 5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
-6. Terminada la instalacion de los dos equipos no olvide ** la Clonacion Completa al primer RockyLinux terminada su instalacion**
+6. Terminada la instalacion de los dos equipos no olvide **Clonacion Completa al primer RockyLinux terminada su instalacion**
 
 ## Configuración Ubuntu Server
 
