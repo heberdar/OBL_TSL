@@ -27,9 +27,12 @@
 
 1. Configure la red con netplan escriba el siguiente comando **sudo vim /etc/netplan/00-installer-config.yaml**
 Modifique los valores respetando los espacios y caracteres
+
 ![netplan_config](https://github.com/heberdar/OBL_TSL/blob/main/images/netplan_config.jpg)
+
 Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectividad.
 2. Permisos sin tipeo de contraseña con el siguiente comando escriba **sudo visudo**
+
 ![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/sudo_visudo.jpg)
 
 ## Configuración del Bastion Rocky
@@ -42,12 +45,12 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 6. Dirigase a su cuenta de GitHub por navegador web en SSH and GPG Keys > New SSH Key, pega el contenido en el box
 7. Ingresamos dicha clave en GitHub para tener acceso a nuestro Repositorio
 
-## Integracion con Visual Studio
+## Integracion con Visual Studio Code
 
 1. Recordar que en el equipo bastion debe tener instalado el paquete tar **sudo dnf install tar**
-2. En extensiones (imagen del cubo) Instalar SSH y Ansible
+2. En Visual ir a extensiones (imagen del cubo) columna izquierda e instalar SSH y Ansible
 3. Crear un archivo de conexion SSH, columna izquierda anteultima opcion
-4. Necesita elegir tipo de sistema operativo y escribir las credenciales de acceso, se continuan instalando otros paquetes de Visual.
+4. Necesita elegir tipo de sistema operativo y escribir las credenciales de acceso, se instalan paquetes de Visual.
 5. En la ventana SSH de Visual escriba esta configuración con los siguientes comandos
 
 - **git config --global user.name "Usuario"**
@@ -57,11 +60,10 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 - **git config --global user.branch auto**
 - **git config --global core.editor vim**
 - **git config --list**
+
 - ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
 
 6. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
 7. El repositorio se encuentra en nuestro equipo Bastion.
+8. En el equipo bastion ejecutamos el comando **"ssh-copy-id ansible@192.168.56.20**
 
-
-
-12. Se llama al comando **"ssh-copy-id usuario@ip-destino"** obteniendo acceso a ese equipo en cuestion
