@@ -18,7 +18,7 @@
 | 5GB | /var |
 | 5GB | /opt |
 | 5GB | /    |
-|![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](image.jpg) |
+|![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](https://github.com/heberdar/OBL_TSL/blob/main/images/ubuntu_LVM.JPG) |
 
 5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
 6. Terminada la instalacion de los dos equipos no olvide ** la Clonacion Completa al primer RockyLinux terminada su instalacion**
@@ -27,8 +27,10 @@
 
 1. Configure la red con netplan escriba el siguiente comando **sudo vim /etc/netplan/00-installer-config.yaml**
 Modifique los valores respetando los espacios y caracteres
-![netplan_config](image.jpg)
+![netplan_config](https://github.com/heberdar/OBL_TSL/blob/main/images/netplan_config.jpg)
 Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectividad.
+2. Permisos sin tipeo de contraseña con el siguiente comando escriba **sudo visudo**
+![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/sudo_visudo.jpg)
 
 ## Configuración del Bastion Rocky
 
@@ -39,8 +41,6 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 5. Utilizamos el siguente comando para ver el contenido de la SSH Key **cat .ssh/id_rsa.pub**
 6. Dirigase a su cuenta de GitHub por navegador web en SSH and GPG Keys > New SSH Key, pega el contenido en el box
 7. Ingresamos dicha clave en GitHub para tener acceso a nuestro Repositorio
-
-
 
 ## Integracion con Visual Studio
 
