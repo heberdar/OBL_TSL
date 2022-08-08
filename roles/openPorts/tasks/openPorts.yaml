@@ -1,0 +1,14 @@
+  - name: Permit traffic to port "{{ port_to_open }}" on Ubuntu
+    ufw:
+      rule: allow
+      port: "{{ port_to_open }}"
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Permit traffic to port "{{ port_to_open }}" on Rocky
+    firewalld:
+      port: "{{ port_to_open }}/tcp"
+      permanent: yes
+      state: enabled
+    notify:
+      - firewalldReload
+    when: ansible_facts['os_family'] == "RedHat"

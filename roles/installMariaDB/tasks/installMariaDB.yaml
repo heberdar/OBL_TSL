@@ -12,8 +12,8 @@
           - mariadb-server
           - python3
         state: latest
-        notify:
-        - startMariaDB
+      notify:
+       - startMariaDB
       when: ansible_facts['os_family'] == "RedHat"
 
     - name:  Install pymysql on Rocky
@@ -21,5 +21,4 @@
       pip: 
         name: pymysql
         state: present
-        notify:
       when: ansible_facts['os_family'] == "RedHat"
