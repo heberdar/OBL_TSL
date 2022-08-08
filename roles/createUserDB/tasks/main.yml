@@ -1,2 +1,17 @@
----
-# tasks file for createUserDB
+  - name: Create database user, named "{{ database_user }}" with all privileges over database "{{ database_name }}"
+    mysql_user:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      name: "{{ database_user }}"
+      password: "{{ database_password }}"
+      priv: "{{ database_name }}.*:ALL"
+      # state: present
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Create database user, named "{{ database_user }}" with all privileges over database "{{ database_name }}"
+    mysql_user:
+      login_unix_socket: /var/lib/mysql/mysql.sock
+      name: "{{ database_user }}"
+      password: "{{ database_password }}"
+      priv: "{{ database_name }}.*:ALL"
+      # state: present
+    when: ansible_facts['os_family'] == "RedHat"

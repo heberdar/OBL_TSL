@@ -1,5 +1,5 @@
 ---
-  - name: Start and Enable mariadb on Rocky
+  - name: startMariaDB
     systemd:
       name: mariadb
       enabled: yes

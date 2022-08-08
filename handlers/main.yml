@@ -1,5 +1,5 @@
 ---
-  - name: Start and Enable Tomcat 9 on server
+  - name: startTomcat
     systemd:
       name: tomcat
       state: started
