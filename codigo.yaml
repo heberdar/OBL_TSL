@@ -47,12 +47,8 @@
       login_user: "{{ database_user }}"
       login_password: "{{ database_password }}"
 
-  - name: Create a Tomcat User
+  - name: Create a Tomcat User and Group
     user:
-      name: tomcat
- 
-  - name: Create a Tomcat Group
-    group:
       name: tomcat
 
   - name: Extract Tomcat
@@ -68,7 +64,7 @@
 
   - name: Change ownership of tomcat directory
     file:
-      path: /opt/
+      path: /opt/tomcat
       owner: tomcat
       group: tomcat
       mode: "u+rwx,g+rx,o=rx"
