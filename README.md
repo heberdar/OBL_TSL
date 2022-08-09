@@ -20,19 +20,8 @@
 | 5GB | /    |
 |![Ejemplo_Rocky8.5](https://github.com/heberdar/OBL_TSL/blob/main/images/rocky8_LVM.JPG) | ![Ejemplo_Ubuntu22.04](https://github.com/heberdar/OBL_TSL/blob/main/images/ubuntu_LVM.JPG) |
 
-5. Se crea el usuario **ansible** con password **ansible01** en ambos equipos
-6. Terminada la instalacion de los dos equipos no olvide **Clonacion Completa al primer RockyLinux terminada su instalacion**
-
-## Configuración Ubuntu Server
-
-1. Configure la red con netplan escriba el siguiente comando **sudo vim /etc/netplan/00-installer-config.yaml**
-Modifique los valores respetando los espacios y caracteres
-
-![netplan_config](https://github.com/heberdar/OBL_TSL/blob/main/images/netplan_config.jpg)
-
-Despues de finalizada la modificación **sudo netplan apply** ya tiene conectividad
-
-2. Permisos sin tipeo de contraseña con el siguiente comando escriba **sudo visudo**
+5. Se crea el usuario **ansible** en ambos equipos
+6. Permisos sin tipeo de contraseña con el siguiente comando escriba **sudo visudo**
 
 ![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/sudo_visudo.jpg)
 
@@ -322,8 +311,8 @@ Invocamos los roles.
             mode: 0755
 
 12. Copia el archivo **"tomcat.service"** que se encuentra en el repositorio, a la carpeta **"tomcat.service"** y se le asignan los permisos. 
-13. Copia el archivo de configuración **"todo.war"** a **"/opt/tomcat/webapps/"** para hacer el despliegue de la aplicacion, con ciertos privilegios 
-14. Se ejecuta el handler de reinicio para el proceso tomcat con el modulo **systemd**
+13. Copia el archivo de configuración **"todo.war"** a **"/opt/tomcat/webapps/"** para hacer el despliegue de la aplicacion, con ciertos privilegios.
+14. Se ejecuta el handler de reinicio para el proceso **"tomcat"** con el modulo **"systemd"**
 
         - name: Copy tomcat.service to remote
           become: true 
@@ -352,6 +341,19 @@ Invocamos los roles.
             state: started
             daemon_reload: true
 #
+
+## Ejecución
+
+1. Posicionarse en la carpeta del repositorio **"OBL_TSL"** .
+2. Editar el archivo **"appservers.ini"** agregando los host correspondientes
+3. 
+        [appservers]
+        servidor1 ansible_host=XXX.YYY.ZZZ.WWW ansible_user=User
+        servidor2 ansible_host=XXX.YYY.ZZZ.WWW ansible_user=User
+
+4. Ejecutar la siguente linea de comando ansible-playbook codigo.yaml -i hosts/appservers.ini
+
 ### Demostración del funcionamiento
 
 ![Animation](https://github.com/heberdar/OBL_TSL/blob/main/images/Animation.gif)
+
