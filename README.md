@@ -351,3 +351,7 @@ Invocamos los roles.
             name: tomcat
             state: started
             daemon_reload: true
+#
+### Demostración del funcionamiento
+
+![Animation](https://github.com/heberdar/OBL_TSL/blob/main/images/Animation.gif)
