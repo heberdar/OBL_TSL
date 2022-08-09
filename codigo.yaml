@@ -100,8 +100,8 @@
       owner: tomcat
       group: tomcat
       mode: 0755
-    notify:
-       - startTomcat
+    changed_when: true
+    notify: start tomcat
  
   - name: Copy todo.war to remote
     become: true 
@@ -111,3 +111,10 @@
       owner: tomcat
       group: tomcat
       mode: 0644
+
+  handlers:
+  - name: start tomcat
+    systemd:
+      name: tomcat
+      state: started
+      daemon_reload: true

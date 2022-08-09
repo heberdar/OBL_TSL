@@ -1,5 +1,5 @@
 ---
-  - name: startMariaDB
+  - name: start mariadb
     systemd:
       name: mariadb
       enabled: yes

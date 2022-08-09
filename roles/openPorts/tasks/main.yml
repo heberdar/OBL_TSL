@@ -9,6 +9,11 @@
       port: "{{ port_to_open }}/tcp"
       permanent: yes
       state: enabled
-    notify:
-      - firewalldReload
+    changed_when: true
     when: ansible_facts['os_family'] == "RedHat"
+    notify: "firewalld reload"
+
+  # - name: prueba
+  #   shell: echo "prueba"
+  #   when: ansible_facts['os_family'] == "RedHat"
+  #   notify: "firewalld reload"
