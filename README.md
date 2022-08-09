@@ -235,7 +235,7 @@ Invocamos los roles.
 
         - name: Extract Java 1.8
           unarchive:
-            src: /home/ansible/OBL_TSL/files/jre-8u321-linux-x64.tar.gz
+            src: ./files/jre-8u321-linux-x64.tar.gz
             dest: /usr/java
         
         - name: Export variable Java 
@@ -247,7 +247,7 @@ Invocamos los roles.
         - name: Copy creartablas.sql to remote
           become: true 
           copy: 
-            src: /home/ansible/OBL_TSL/files/creartablas.sql
+            src: ./files/creartablas.sql
             dest: /home/ansible/
             owner: ansible
             group: ansible
@@ -272,7 +272,7 @@ Invocamos los roles.
 
         - name: Extract Tomcat
           unarchive:
-            src: /home/ansible/OBL_TSL/files/tomcat.tar.gz
+            src: ./files/tomcat.tar.gz
             dest: /opt/
             owner: tomcat
             group: tomcat
@@ -304,7 +304,7 @@ Invocamos los roles.
         - name: Copy app.properties to remote
           become: true 
           copy: 
-            src: /home/ansible/OBL_TSL/files/app.properties
+            src: ./files/app.properties
             dest: /opt/config
             owner: tomcat
             group: tomcat
@@ -317,7 +317,7 @@ Invocamos los roles.
         - name: Copy tomcat.service to remote
           become: true 
           copy: 
-            src: /home/ansible/OBL_TSL/files/tomcat.service
+            src: ./files/tomcat.service
             dest: /etc/systemd/system/
             owner: tomcat
             group: tomcat
@@ -328,7 +328,7 @@ Invocamos los roles.
         - name: Copy todo.war to remote
           become: true 
           copy: 
-            src: /home/ansible/OBL_TSL/files/todo.war
+            src: ./files/todo.war
             dest: /opt/tomcat/webapps/
             owner: tomcat
             group: tomcat
