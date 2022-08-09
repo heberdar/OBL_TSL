@@ -44,13 +44,14 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 5. Utilizamos el siguente comando para ver el contenido de la SSH Key **cat .ssh/id_rsa.pub**
 6. Dirigase a su cuenta de GitHub por navegador web en SSH and GPG Keys > New SSH Key, pega el contenido en el box
 7. Ingresamos dicha clave en GitHub para tener acceso a nuestro Repositorio
+8. Recordar que en el equipo bastion debe tener instalado el paquete tar **sudo dnf install tar**
+9. En Visual ir a extensiones (imagen del cubo) columna izquierda e instalar SSH y Ansible
+10. Crear un archivo de conexion SSH, columna izquierda anteultima opcion
+11. Necesita elegir tipo de sistema operativo y escribir las credenciales de acceso, se instalan paquetes de Visual.
+12. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
+13. El repositorio se encuentra en nuestro equipo Bastion.
+14. En el equipo bastion ejecutamos el comando **"ssh-copy-id ansible@192.168.56.20** (esto se realiza por cada equipo que desee automatizar con Ansible).
 
-## Integracion con Visual Studio Code
+## Desarrollo del código 
 
-1. Recordar que en el equipo bastion debe tener instalado el paquete tar **sudo dnf install tar**
-2. En Visual ir a extensiones (imagen del cubo) columna izquierda e instalar SSH y Ansible
-3. Crear un archivo de conexion SSH, columna izquierda anteultima opcion
-4. Necesita elegir tipo de sistema operativo y escribir las credenciales de acceso, se instalan paquetes de Visual.
-5. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
-6. El repositorio se encuentra en nuestro equipo Bastion.
-7. En el equipo bastion ejecutamos el comando **"ssh-copy-id ansible@192.168.56.20**
+![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/Arbol.jpg)
