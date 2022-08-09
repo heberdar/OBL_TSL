@@ -239,7 +239,6 @@ Invocamos los roles.
 3. Cargamos la variable de entorno con la ruta nueva de **"Java 1.8"**. 
 
       tasks:
-
       - name: Create directory for Java 1.8 
         file:
           path: /usr/java
