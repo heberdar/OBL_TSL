@@ -1,6 +1,0 @@
----
-  - name: Start and Enable mariadb on Rocky
-    systemd:
-      name: mariadb
-      enabled: yes
-      state: started
