@@ -30,7 +30,8 @@ Modifique los valores respetando los espacios y caracteres
 
 ![netplan_config](https://github.com/heberdar/OBL_TSL/blob/main/images/netplan_config.jpg)
 
-Despues de finalizada la modificación **sudo netplan apply** ya tiene conectividad.
+Despues de finalizada la modificación **sudo netplan apply** ya tiene conectividad
+
 2. Permisos sin tipeo de contraseña con el siguiente comando escriba **sudo visudo**
 
 ![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/sudo_visudo.jpg)
@@ -322,32 +323,32 @@ Invocamos los roles.
           mode: 0755
 
 12. Copia el archivo **"tomcat.service"** que se encuentra en el repositorio, a la carpeta **"tomcat.service"** y se le asignan los permisos. 
-13.
-14.
+13. Copia el archivo de configuración **"todo.war"** a **"/opt/tomcat/webapps/"** para hacer el despliegue de la aplicacion, con ciertos privilegios 
+14. Se ejecuta el handler de reinicio para el proceso tomcat con el modulo **systemd**
 
-  - name: Copy tomcat.service to remote
-    become: true 
-    copy: 
-      src: /home/ansible/OBL_TSL/files/tomcat.service
-      dest: /etc/systemd/system/
-      owner: tomcat
-      group: tomcat
-      mode: 0755
-    changed_when: true
-    notify: start tomcat
- 
-  - name: Copy todo.war to remote
-    become: true 
-    copy: 
-      src: /home/ansible/OBL_TSL/files/todo.war
-      dest: /opt/tomcat/webapps/
-      owner: tomcat
-      group: tomcat
-      mode: 0644
+      - name: Copy tomcat.service to remote
+        become: true 
+        copy: 
+          src: /home/ansible/OBL_TSL/files/tomcat.service
+          dest: /etc/systemd/system/
+          owner: tomcat
+          group: tomcat
+          mode: 0755
+        changed_when: true
+        notify: start tomcat
+    
+      - name: Copy todo.war to remote
+        become: true 
+        copy: 
+          src: /home/ansible/OBL_TSL/files/todo.war
+          dest: /opt/tomcat/webapps/
+          owner: tomcat
+          group: tomcat
+          mode: 0644
 
-  handlers:
-  - name: start tomcat
-    systemd:
-      name: tomcat
-      state: started
-      daemon_reload: true
+      handlers:
+      - name: start tomcat
+        systemd:
+          name: tomcat
+          state: started
+          daemon_reload: true
