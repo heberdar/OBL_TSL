@@ -1,4 +1,3 @@
-<<<<<<< HEAD
   - name: Update Ubuntu
     apt:
       update_cache: yes
@@ -8,7 +7,3 @@
     yum:
       update_cache: yes
     when: ansible_facts['os_family'] == "RedHat"
-=======
----
-# tasks file for updateOS
->>>>>>> 6eb005591a66989e06403c2ca91788ab29f2e285
