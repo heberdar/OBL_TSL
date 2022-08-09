@@ -51,19 +51,6 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 2. En Visual ir a extensiones (imagen del cubo) columna izquierda e instalar SSH y Ansible
 3. Crear un archivo de conexion SSH, columna izquierda anteultima opcion
 4. Necesita elegir tipo de sistema operativo y escribir las credenciales de acceso, se instalan paquetes de Visual.
-5. En la ventana SSH de Visual escriba esta configuración con los siguientes comandos
-
-- **git config --global user.name "Usuario"**
-- **git config --global user.email "Usuario@dominio"**
-- **git config --global user.color.ui true**
-- **git config --global user.status auto**
-- **git config --global user.branch auto**
-- **git config --global core.editor vim**
-- **git config --list**
-
-- ![ConfigGit](https://github.com/heberdar/OBL_TSL/blob/main/images/Configuraciones.png)
-
-6. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
-7. El repositorio se encuentra en nuestro equipo Bastion.
-8. En el equipo bastion ejecutamos el comando **"ssh-copy-id ansible@192.168.56.20**
-
+5. Utilizamos el siguiente comando **git clone git@github.com:heberdar/OBL_TSL.git**
+6. El repositorio se encuentra en nuestro equipo Bastion.
+7. En el equipo bastion ejecutamos el comando **"ssh-copy-id ansible@192.168.56.20**
