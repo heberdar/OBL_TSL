@@ -232,122 +232,122 @@ Invocamos los roles.
         - createDatabase
         - createUserDB
 
-### Tareas
+### Tareas.
 
 1. Creamos el directorio donde se va a encontrar **"Java 1.8"**.
 2. Descomprimimos el archivo **"jre-8u321-linux-x64.tar.gz"**, que se encuentra en el repositorio a la carpeta creada anteriormente. 
 3. Cargamos la variable de entorno con la ruta nueva de **"Java 1.8"**. 
 
-      tasks:
-      - name: Create directory for Java 1.8 
-        file:
-          path: /usr/java
-          state: directory
+        tasks:
+        - name: Create directory for Java 1.8 
+          file:
+            path: /usr/java
+            state: directory
 
-      - name: Extract Java 1.8
-        unarchive:
-          src: /home/ansible/OBL_TSL/files/jre-8u321-linux-x64.tar.gz
-          dest: /usr/java
-      
-      - name: Export variable Java 
-        command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashrc
+        - name: Extract Java 1.8
+          unarchive:
+            src: /home/ansible/OBL_TSL/files/jre-8u321-linux-x64.tar.gz
+            dest: /usr/java
+        
+        - name: Export variable Java 
+          command: echo 'export PATH="$PATH:/usr/java/jre1.8.0_321/bin"' >> ~/.bashrc && source ~/.bashr
 
 4. Copia el archivo **"creartablas.sql"** que se encuentra en el repositorio, a la maquina remota. 
 5. Crea las tablas en la base de datos a partir del archivo cargado anteriormente. 
 
-      - name: Copy creartablas.sql to remote
-        become: true 
-        copy: 
-          src: /home/ansible/OBL_TSL/files/creartablas.sql
-          dest: /home/ansible/
-          owner: ansible
-          group: ansible
-          mode: 0744
+        - name: Copy creartablas.sql to remote
+          become: true 
+          copy: 
+            src: /home/ansible/OBL_TSL/files/creartablas.sql
+            dest: /home/ansible/
+            owner: ansible
+            group: ansible
+            mode: 0744
 
-      - name: Create tables SQL 
-        mysql_db: 
-          name: "{{ database_name }}" 
-          state: import 
-          target: /home/ansible/creartablas.sql
-          login_user: "{{ database_user }}"
-          login_password: "{{ database_password }}"
+        - name: Create tables SQL 
+          mysql_db: 
+            name: "{{ database_name }}" 
+            state: import 
+            target: /home/ansible/creartablas.sql
+            login_user: "{{ database_user }}"
+            login_password: "{{ database_password }}"
 
 6. Crea el usuario y el grupo **"tomcat"**.
 7. Extrae **"tomcat.tar.gz"** desde el repositorio a la ruta **"/opt/"**.
 8. Se renombra la carpeta luego de la extración. 
 9. Se le asignan los permisos y se cambia el **"ownership"** de la carpeta **"/opt/tomcat"**.
 
-      - name: Create a Tomcat User and Group
-        user:
-          name: tomcat
+        - name: Create a Tomcat User and Group
+          user:
+            name: tomcat
 
-      - name: Extract Tomcat
-        unarchive:
-          src: /home/ansible/OBL_TSL/files/tomcat.tar.gz
-          dest: /opt/
-          owner: tomcat
-          group: tomcat
-          mode: 0755
+        - name: Extract Tomcat
+          unarchive:
+            src: /home/ansible/OBL_TSL/files/tomcat.tar.gz
+            dest: /opt/
+            owner: tomcat
+            group: tomcat
+            mode: 0755
 
-      - name: Rename tomcat folder after to Extract
-        command: mv /opt/apache-tomcat-9.0.65 /opt/tomcat
+        - name: Rename tomcat folder after to Extract
+          command: mv /opt/apache-tomcat-9.0.65 /opt/tomcat
 
-      - name: Change ownership of tomcat directory
-        file:
-          path: /opt/tomcat
-          owner: tomcat
-          group: tomcat
-          mode: "u+rwx,g+rx,o=rx"
-          recurse: yes
-          state: directory
+        - name: Change ownership of tomcat directory
+          file:
+            path: /opt/tomcat
+            owner: tomcat
+            group: tomcat
+            mode: "u+rwx,g+rx,o=rx"
+            recurse: yes
+            state: directory
  
 10. Creación del directorio **"/opt/config"**, donde va a estar ubicado el archivo de conexión a la base de datos. 
 11. Copia el archivo **"app.properties"** que se encuentra en el repositorio, al directorio creado anteriormente y se le asignan los permisos. 
 
-      - name: Create a /opt/config directory
-        file:
-          path: /opt/config
-          owner: tomcat
-          group: tomcat
-          mode: 755
-          recurse: yes
+        - name: Create a /opt/config directory
+          file:
+            path: /opt/config
+            owner: tomcat
+            group: tomcat
+            mode: 755
+            recurse: yes
 
-      - name: Copy app.properties to remote
-        become: true 
-        copy: 
-          src: /home/ansible/OBL_TSL/files/app.properties
-          dest: /opt/config
-          owner: tomcat
-          group: tomcat
-          mode: 0755
+        - name: Copy app.properties to remote
+          become: true 
+          copy: 
+            src: /home/ansible/OBL_TSL/files/app.properties
+            dest: /opt/config
+            owner: tomcat
+            group: tomcat
+            mode: 0755
 
 12. Copia el archivo **"tomcat.service"** que se encuentra en el repositorio, a la carpeta **"tomcat.service"** y se le asignan los permisos. 
 13. Copia el archivo de configuración **"todo.war"** a **"/opt/tomcat/webapps/"** para hacer el despliegue de la aplicacion, con ciertos privilegios 
 14. Se ejecuta el handler de reinicio para el proceso tomcat con el modulo **systemd**
 
-      - name: Copy tomcat.service to remote
-        become: true 
-        copy: 
-          src: /home/ansible/OBL_TSL/files/tomcat.service
-          dest: /etc/systemd/system/
-          owner: tomcat
-          group: tomcat
-          mode: 0755
-        changed_when: true
-        notify: start tomcat
-    
-      - name: Copy todo.war to remote
-        become: true 
-        copy: 
-          src: /home/ansible/OBL_TSL/files/todo.war
-          dest: /opt/tomcat/webapps/
-          owner: tomcat
-          group: tomcat
-          mode: 0644
+        - name: Copy tomcat.service to remote
+          become: true 
+          copy: 
+            src: /home/ansible/OBL_TSL/files/tomcat.service
+            dest: /etc/systemd/system/
+            owner: tomcat
+            group: tomcat
+            mode: 0755
+          changed_when: true
+          notify: start tomcat
+      
+        - name: Copy todo.war to remote
+          become: true 
+          copy: 
+            src: /home/ansible/OBL_TSL/files/todo.war
+            dest: /opt/tomcat/webapps/
+            owner: tomcat
+            group: tomcat
+            mode: 0644
 
-      handlers:
-      - name: start tomcat
-        systemd:
-          name: tomcat
-          state: started
-          daemon_reload: true
+        handlers:
+        - name: start tomcat
+          systemd:
+            name: tomcat
+            state: started
+            daemon_reload: true
