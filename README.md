@@ -55,3 +55,41 @@ Despues de finalizada la modificacion **sudo netplan apply** ya tiene conectivid
 ## Desarrollo del código 
 
 ![sudo_visudo](https://github.com/heberdar/OBL_TSL/blob/main/images/Arbol.jpg)
+
+- Creamos el código principal llamado **"codigo.yaml"** y los siguientes roles:
+1. "updateOS"
+2. "installMariaDB"
+3. "createDatabase"
+4. "createUserDB"
+5. "openPorts"
+
+
+### 1. Rol: updateOS
+
+- `  - name: Update Ubuntu
+    apt:
+      update_cache: yes
+    when: ansible_facts['os_family'] == "Debian" 
+
+  - name: Update Rocky
+    yum:
+      update_cache: yes
+    when: ansible_facts['os_family'] == "RedHat" `
+
+- 
+
+### 2. Rol: installMariaDB
+
+-
+
+### 3. Rol: createDatabase
+
+-
+
+### 4. Rol: createUserDB
+
+-
+
+### 5. Rol: openPorts
+
+- 
